@@ -2,4 +2,6 @@ clc
 clear
 close all
 
-%to use, call 
+message = input("Input Text Message:\n", "s");    % Input Message from User
+fprintf(message + "\n")
+
