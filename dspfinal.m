@@ -15,6 +15,16 @@ width = 100;
 bit_text_msg = reshape(binMessage.', 1, [])
 
 for i = 1:length(bit_text_msg)
+    %x is starting and ending points of each box
+    x1=width*(i-1);
+    x2=width*i;
+    if bit_text_msg(i)=='0'
+        y=-1;
+    end
+    if bit_text_msg(i)=='1'
+        y=1;
+    end
+    %now we need to add this new box to a set of the existing boxes
 end
 
 
