@@ -7,4 +7,6 @@ fprintf(message + "\n")
 asciiValues = uint8(message);
 binMessage=dec2bin(asciiValues, 8);
 
+for i = 1:length(binMessage)
+end
 
