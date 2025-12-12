@@ -32,6 +32,16 @@ for i = 1:length(bit_text_msg)
     end
 end
 
+%plotting
+X=boxes(:,1);
+Y=boxes(:,2);
+plot(X, Y);
+xlabel('X values');
+ylabel('Y values');
+title('Plot of boxes');
+grid on;
+
+
 
 
 
