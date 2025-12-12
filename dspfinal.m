@@ -13,6 +13,7 @@ binMessage=dec2bin(asciiValues, 8) % ASCII Integer Values mapped to 8-bit binary
 
 width = 100;
 bit_text_msg = reshape(binMessage.', 1, [])
+boxes=[0 0];
 
 for i = 1:length(bit_text_msg)
     %x is starting and ending points of each box
@@ -25,7 +26,12 @@ for i = 1:length(bit_text_msg)
         y=1;
     end
     %now we need to add this new box to a set of the existing boxes
+    for n = x1:x2
+        newentry=[n y];
+        boxes=[boxes; newentry]
+    end
 end
+
 
 
 
