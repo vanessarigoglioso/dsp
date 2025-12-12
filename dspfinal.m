@@ -12,7 +12,10 @@ binMessage=dec2bin(asciiValues, 8) % ASCII Integer Values mapped to 8-bit binary
 % msg_length = numel(asciiValues);
 
 width = 100;
+bit_text_msg = reshape(binMessage.', 1, [])
+
 for i = 1:length(binMessage)
 end
+
 
 
