@@ -5,44 +5,55 @@ clc
 % User Message Input:
 message = input("Input Text Message:\n", "s");
 fprintf(message + "\n")
+header = 'H' % Create a header for identification from receiver
 
 % Convert text to binary
 asciiValues = uint8(message); % Characters mapped to ASCII Integer Values
-binMessage=dec2bin(asciiValues, 8) % ASCII Integer Values mapped to 8-bit binary
+header_asciiValues = uint8(header); 
+
+binMessage=dec2bin(asciiValues, 8); % ASCII Integer Values mapped to 8-bit binary
+header_binMessage = dec2bin(header_asciiValues, 8);
 % msg_length = numel(asciiValues);
 
-width = 100;
+n = 100; % Width of n = W
 bit_text_msg = reshape(binMessage.', 1, [])
-boxes=[0 0];
+header_bit = reshape(header_binMessage.', 1, [])
+bit_msg_w_hdr = [header_bit bit_text_msg]
 
-for i = 1:length(bit_text_msg)
+boxes = [];
+tic
+for i = 1:length(bit_msg_w_hdr)
     %x is starting and ending points of each box
-    x1=width*(i-1);
-    x2=width*i;
-    if bit_text_msg(i)=='0'
+    x1=n*(i-1);
+    x2=n*i;
+    if bit_msg_w_hdr(i)=='0'
         y=-1;
     end
-    if bit_text_msg(i)=='1'
+    if bit_msg_w_hdr(i)=='1'
         y=1;
     end
     %now we need to add this new box to a set of the existing boxes
-    for n = x1:x2
-        newentry=[n y];
-        boxes=[boxes; newentry]
+    for bounds = x1:x2
+        newentry=[bounds y];
+        boxes=[boxes; newentry];
     end
 end
+toc
 
 %plotting
-X=boxes(:,1);
-Y=boxes(:,2);
-plot(X, Y);
-xlabel('X values');
-ylabel('Y values');
+width = boxes(:,1);
+msg_output = boxes(:,2);
+plot(width, msg_output);
+xlabel('n');
+ylabel('m[n]');
 title('Plot of boxes');
 grid on;
 
+Fs = 5000;
 
+% create the first cosine for audio modulation
+l = [0:length(msg_output)-1]';
+omega_1 = 2*pi*1000/Fs;
+c1 = cos(omega_1*l);
 
-
-
-
+x1 = msg_output.*c1;
