@@ -5,7 +5,7 @@ clc
 % User Message Input:
 message = input("Input Text Message:\n", "s");
 fprintf(message + "\n")
-header = 'H' % Create a header for identification from receiver
+header = 'H'
 
 % Convert text to binary
 asciiValues = uint8(message); % Characters mapped to ASCII Integer Values
@@ -49,11 +49,20 @@ ylabel('m[n]');
 title('Plot of boxes');
 grid on;
 
-Fs = 5000;
+plot_mag_freq(msg_output)
+title('Magnitude of the Fourier Transform of original signal')
 
-% create the first cosine for audio modulation
+% create the first cosine
 l = [0:length(msg_output)-1]';
-omega_1 = 2*pi*1000/Fs;
+Fs = 5000;
+Fc = 1000;
+omega_1 = 2*pi*(Fc/Fs);
 c1 = cos(omega_1*l);
 
 x1 = msg_output.*c1;
+% visualize the Fourier transforms of the demodulated signals
+figure(2)
+plot_mag_freq(x1);
+title('Magnitude of the Fourier Transform of the demodulated signal with \omega_1')
+
+xx1 = [zeros(Fs, 1); x1];
