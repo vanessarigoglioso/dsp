@@ -1,4 +1,4 @@
-%Vanessa Rigoglioso and Paco Cervantes, with help from Prof. Siddhartan Govindasamy
+%Vanessa Rigoglioso and Francisco Cervantes, with help from Prof. Siddhartan Govindasamy
 %Note: parameters can be changed as needed to improve accuracy, but be sure to change them in each file
 
 samplerate=5000;
@@ -23,3 +23,4 @@ plot(recording);
 title("Plot of raw recording"); %visual check. Will be helpful for later comparisons to the plots produced in recordingcrop.m
 
 % ******NOTE******* Be sure to save .mat file of recording in command window if the recording sounds clear enough when played, so it can be processed and converted back into a message in recordingcrop.m
+
